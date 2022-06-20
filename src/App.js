@@ -4,7 +4,7 @@ function App() {
   return (
     <div>
       <h1>Todos from REduxToolkit</h1>
-      <Todoscomp/>
+      <Todoscomp />
     </div>
   );
 }

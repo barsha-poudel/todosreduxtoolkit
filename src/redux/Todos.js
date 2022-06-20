@@ -8,15 +8,16 @@ export const todosSlice = createSlice({
     initialState:[],
     reducers:{
         ADD_TODO:(state, action)=> {
+            let newList = state
             const newTodo ={
                 id: Math.random(),
-                name: action.payload.todo
+                name: action.payload
             }
-            state.push(newTodo)
-
+            newList.push(newTodo)
+            return  newList
         },
         DELETE_TODO:(state,action)=>{
-            return state.filter((item)=>item.id !==action.payload.id)
+            return state.filter((item)=>item.id!==action.payload.id)
         }
     }
 })

@@ -1,8 +1,11 @@
 import {useState} from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import {ADD_TODO, DELETE_TODO} from '../redux/Todos';
 
 const Todo = () =>{
+    const todos =useSelector((state)=>{
+        return state.Todos
+    })
     const [inputdata,setInputdata] = useState('')
     const dispatch = useDispatch();
     const handleChange=(e)=>{
@@ -14,9 +17,21 @@ const Todo = () =>{
         <div>
             <input type="text" placeholder="Add Items" value={inputdata} onChange={handleChange}></input>
             <button onClick={()=>dispatch(ADD_TODO(inputdata), setInputdata(' '))}>ADD TODOS</button>
-            <button onClick={()=>dispatch(DELETE_TODO(inputdata))}>DELETE TODOS</button>
-        
         </div>
+        <div>
+     
+        {todos.map((todo,index)=>(
+                // <li id={todo.id} name={todo.name}></li>
+                <div key = {index}>
+                    <p>{todo.id}</p>
+                    <p>{todo.name}</p>
+                    <button onClick={()=>dispatch(DELETE_TODO({id: todo.id}))}>DELETE TODOS</button>
+                </div>
+                
+            ))}
+      
+        </div>
+
         </>
     
     )
